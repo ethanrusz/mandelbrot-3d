@@ -29,23 +29,29 @@ def mandelbrot(height, width, zoom=1, max_iterations=100, x=-0.5, y=0):
     return div_time
 
 
-st.title("Mandelbrot 3D*")
-st.write("*Eventually")
+def main():
+    st.set_page_config("Mandelbrot 3D", "📈")
+    st.title("Mandelbrot 3D*")
+    st.write("*Eventually")
 
-with st.form("params"):
-    st.write("Parameters")
-    height = st.number_input("Height", min_value=1, step=1, value=800)
-    width = st.number_input("Width", min_value=1, step=1, value=1000)
-    zoom = st.slider("Zoom", min_value=1, max_value=100, value=1)
-    max_iterations = st.slider("Maximum Iterations", min_value=1, max_value=500, value=100)
+    with st.form("params"):
+        st.write("Parameters")
+        height = st.number_input("Height", min_value=1, step=1, value=800)
+        width = st.number_input("Width", min_value=1, step=1, value=1000)
+        zoom = st.slider("Zoom", min_value=1, max_value=100, value=1)
+        max_iterations = st.slider("Maximum Iterations", min_value=1, max_value=500, value=100)
 
-    generate = st.form_submit_button("Generate Figure")
+        generate = st.form_submit_button("Generate Figure")
 
-if generate:
-    plt.imshow(mandelbrot(height, width, zoom, max_iterations))
-    plt.savefig("./set.png")
-    st.image("./set.png", caption="Output")
+    if generate:
+        plt.imshow(mandelbrot(height, width, zoom, max_iterations))
+        plt.savefig("./set.png")
+        st.image("./set.png", caption="Output")
 
-if st.button("Download as STL"):
-    st.error("You thought I had time to write that?")
-    st.info("lmao")
+    if st.button("Download as STL"):
+        st.error("You thought I had time to write that?")
+        st.info("lmao")
+
+
+if __name__ == '__main__':
+    main()
